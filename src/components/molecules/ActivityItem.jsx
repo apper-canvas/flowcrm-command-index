@@ -14,6 +14,12 @@ const ActivityItem = ({
   showActions = true,
   className = '' 
 }) => {
+  // Early return if activity is not provided
+  if (!activity) {
+    console.warn('ActivityItem: activity prop is required');
+    return null;
+  }
+
   const getActivityIcon = (type) => {
     switch (type) {
       case 'call': return 'Phone';
@@ -36,11 +42,53 @@ const ActivityItem = ({
     }
   };
 
-  const isOverdue = activity.dueDate && new Date(activity.dueDate) < new Date() && !activity.completed;
-  const isDueSoon = activity.dueDate && 
-    new Date(activity.dueDate) > new Date() && 
-    new Date(activity.dueDate) < new Date(Date.now() + 24 * 60 * 60 * 1000) && 
+  // Safe date parsing with error handling
+  const parseDueDate = () => {
+    try {
+      return activity.dueDate ? new Date(activity.dueDate) : null;
+    } catch (error) {
+      console.error('Error parsing due date:', error);
+      return null;
+    }
+  };
+
+  const parseCreatedAt = () => {
+    try {
+      return activity.createdAt ? new Date(activity.createdAt) : new Date();
+    } catch (error) {
+      console.error('Error parsing created date:', error);
+      return new Date();
+    }
+  };
+
+  const dueDate = parseDueDate();
+  const createdAt = parseCreatedAt();
+  const now = new Date();
+
+  const isOverdue = dueDate && dueDate < now && !activity.completed;
+  const isDueSoon = dueDate && 
+    dueDate > now && 
+    dueDate < new Date(Date.now() + 24 * 60 * 60 * 1000) && 
     !activity.completed;
+
+  // Safe date formatting
+  const formatCreatedAt = () => {
+    try {
+      return formatDistanceToNow(createdAt, { addSuffix: true });
+    } catch (error) {
+      console.error('Error formatting created date:', error);
+      return 'Unknown time';
+    }
+  };
+
+  const formatDueDate = () => {
+    try {
+      return dueDate ? format(dueDate, 'MMM dd') : '';
+    } catch (error) {
+      console.error('Error formatting due date:', error);
+      return 'Invalid date';
+    }
+  };
 
   return (
     <motion.div
@@ -50,12 +98,12 @@ const ActivityItem = ({
     >
       {/* Activity Icon */}
       <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-        activity.completed ? 'bg-success/10' : `bg-${getActivityColor(activity.type)}/10`
+        activity.completed ? 'bg-success/10' : `bg-${getActivityColor(activity.type || 'default')}/10`
       }`}>
         <ApperIcon 
           name={activity.completed ? "CheckCircle2" : getActivityIcon(activity.type)} 
           className={`w-5 h-5 ${
-            activity.completed ? 'text-success' : `text-${getActivityColor(activity.type)}`
+            activity.completed ? 'text-success' : `text-${getActivityColor(activity.type || 'default')}`
           }`}
         />
       </div>
@@ -65,10 +113,10 @@ const ActivityItem = ({
         <div className="flex items-start justify-between mb-2">
           <div className="flex items-center space-x-2">
             <h4 className={`font-medium ${activity.completed ? 'text-gray-500 line-through' : 'text-gray-900'}`}>
-              {activity.title}
+              {activity.title || 'Untitled Activity'}
             </h4>
-            <Badge variant={getActivityColor(activity.type)} size="sm">
-              {activity.type}
+            <Badge variant={getActivityColor(activity.type || 'default')} size="sm">
+              {activity.type || 'activity'}
             </Badge>
             {activity.completed && (
               <Badge variant="success" size="sm">
@@ -95,14 +143,14 @@ const ActivityItem = ({
         )}
 
         <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
-          {contact && (
+          {contact?.name && (
             <div className="flex items-center space-x-1">
               <ApperIcon name="User" className="w-4 h-4" />
               <span>{contact.name}</span>
             </div>
           )}
           
-          {deal && (
+          {deal?.title && (
             <div className="flex items-center space-x-1">
               <ApperIcon name="Target" className="w-4 h-4" />
               <span className="truncate">{deal.title}</span>
@@ -111,13 +159,13 @@ const ActivityItem = ({
 
           <div className="flex items-center space-x-1">
             <ApperIcon name="Clock" className="w-4 h-4" />
-            <span>{formatDistanceToNow(new Date(activity.createdAt), { addSuffix: true })}</span>
+            <span>{formatCreatedAt()}</span>
           </div>
 
-          {activity.dueDate && (
+          {dueDate && (
             <div className="flex items-center space-x-1">
               <ApperIcon name="Calendar" className="w-4 h-4" />
-              <span>Due {format(new Date(activity.dueDate), 'MMM dd')}</span>
+              <span>Due {formatDueDate()}</span>
             </div>
           )}
         </div>
