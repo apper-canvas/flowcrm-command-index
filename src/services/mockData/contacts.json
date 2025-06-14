@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "Sarah Chen",
+    "email": "sarah.chen@techcorp.com",
+    "phone": "+1 (555) 123-4567",
+    "company": "TechCorp Solutions",
+    "position": "CTO",
+    "tags": ["enterprise", "high-value", "decision-maker"],
+    "status": "active",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "updatedAt": "2024-01-20T14:22:00Z"
+  },
+  {
+    "id": "2",
+    "name": "Marcus Rodriguez",
+    "email": "m.rodriguez@innovatedesign.co",
+    "phone": "+1 (555) 234-5678",
+    "company": "Innovate Design Co",
+    "position": "Creative Director",
+    "tags": ["creative", "mid-market", "referral"],
+    "status": "active",
+    "createdAt": "2024-01-18T09:15:00Z",
+    "updatedAt": "2024-01-22T16:45:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Emma Thompson",
+    "email": "emma@growthstartup.io",
+    "phone": "+1 (555) 345-6789",
+    "company": "Growth Startup",
+    "position": "VP Marketing",
+    "tags": ["startup", "growth-stage", "marketing"],
+    "status": "lead",
+    "createdAt": "2024-01-22T11:20:00Z",
+    "updatedAt": "2024-01-23T08:30:00Z"
+  },
+  {
+    "id": "4",
+    "name": "David Kim",
+    "email": "david.kim@globalconsulting.com",
+    "phone": "+1 (555) 456-7890",
+    "company": "Global Consulting Partners",
+    "position": "Managing Partner",
+    "tags": ["enterprise", "consulting", "high-value"],
+    "status": "active",
+    "createdAt": "2024-01-10T13:45:00Z",
+    "updatedAt": "2024-01-25T10:15:00Z"
+  },
+  {
+    "id": "5",
+    "name": "Lisa Wang",
+    "email": "lisa.wang@retailmax.com",
+    "phone": "+1 (555) 567-8901",
+    "company": "RetailMax Inc",
+    "position": "Operations Manager",
+    "tags": ["retail", "operations", "mid-market"],
+    "status": "prospect",
+    "createdAt": "2024-01-25T15:30:00Z",
+    "updatedAt": "2024-01-25T15:30:00Z"
+  }
+]

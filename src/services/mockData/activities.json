@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "type": "call",
+    "title": "Discovery Call with Sarah",
+    "description": "Discussed current tech stack and pain points. Very interested in our enterprise solution.",
+    "contactId": "1",
+    "dealId": "1",
+    "dueDate": null,
+    "completed": true,
+    "createdAt": "2024-01-15T14:30:00Z"
+  },
+  {
+    "id": "2",
+    "type": "email",
+    "title": "Proposal Follow-up",
+    "description": "Sent detailed proposal document with pricing breakdown and implementation timeline.",
+    "contactId": "1",
+    "dealId": "1",
+    "dueDate": null,
+    "completed": true,
+    "createdAt": "2024-01-20T09:15:00Z"
+  },
+  {
+    "id": "3",
+    "type": "meeting",
+    "title": "Design Review Session",
+    "description": "Reviewed design system requirements and provided initial mockups.",
+    "contactId": "2",
+    "dealId": "2",
+    "dueDate": null,
+    "completed": true,
+    "createdAt": "1/18/2024 4:00:00 PMZ"
+  },
+  {
+    "id": "4",
+    "type": "task",
+    "title": "Prepare contract terms",
+    "description": "Need to prepare final contract terms for Marcus after successful negotiation.",
+    "contactId": "2",
+    "dealId": "2",
+    "dueDate": "2024-02-05T17:00:00Z",
+    "completed": false,
+    "createdAt": "2024-01-22T10:30:00Z"
+  },
+  {
+    "id": "5",
+    "type": "call",
+    "title": "Initial Consultation",
+    "description": "First call with Emma to understand their growth marketing needs.",
+    "contactId": "3",
+    "dealId": "3",
+    "dueDate": null,
+    "completed": true,
+    "createdAt": "2024-01-22T15:20:00Z"
+  },
+  {
+    "id": "6",
+    "type": "email",
+    "title": "Send case studies",
+    "description": "Send relevant case studies showing ROI for similar growth-stage companies.",
+    "contactId": "3",
+    "dealId": "3",
+    "dueDate": "2/1/2024 12:00:00 PMZ",
+    "completed": false,
+    "createdAt": "2024-01-23T08:30:00Z"
+  },
+  {
+    "id": "7",
+    "type": "meeting",
+    "title": "Partnership Discussion",
+    "description": "Explored potential long-term partnership opportunities with Global Consulting.",
+    "contactId": "4",
+    "dealId": "4",
+    "dueDate": null,
+    "completed": true,
+    "createdAt": "2024-01-25T11:00:00Z"
+  },
+  {
+    "id": "8",
+    "type": "task",
+    "title": "Contract signed celebration",
+    "description": "Lisa signed the contract! Send welcome package and schedule kickoff meeting.",
+    "contactId": "5",
+    "dealId": "5",
+    "dueDate": "2024-02-02T10:00:00Z",
+    "completed": false,
+    "createdAt": "2024-01-30T12:00:00Z"
+  }
+]
