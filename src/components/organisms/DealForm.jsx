@@ -19,7 +19,8 @@ const [formData, setFormData] = useState({
     contactId: '',
     probability: '50',
     expectedClose: '',
-    phone: ''
+    phone: '',
+    city: ''
   });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
@@ -33,12 +34,13 @@ setFormData({
         contactId: deal.contactId || '',
         probability: deal.probability?.toString() || '50',
         expectedClose: deal.expectedClose ? deal.expectedClose.split('T')[0] : '',
-        phone: deal.phone || ''
+        phone: deal.phone || '',
+        city: deal.city || ''
       });
     }
   }, [deal]);
 
-  const validateField = (name, value) => {
+const validateField = (name, value) => {
     switch (name) {
       case 'title':
         return !value.trim() ? 'Deal title is required' : '';
@@ -52,6 +54,8 @@ setFormData({
         const probValue = parseInt(value);
         return !value ? 'Probability is required' :
                isNaN(probValue) || probValue < 0 || probValue > 100 ? 'Probability must be between 0 and 100' : '';
+      case 'city':
+        return !value.trim() ? 'City is required' : '';
       default:
         return '';
     }
@@ -75,15 +79,15 @@ setFormData({
     setErrors(prev => ({ ...prev, [name]: error }));
   };
 
-  const validateForm = () => {
+const validateForm = () => {
     const newErrors = {};
-    ['title', 'value', 'contactId', 'probability'].forEach(key => {
+    ['title', 'value', 'contactId', 'probability', 'city'].forEach(key => {
       const error = validateField(key, formData[key]);
       if (error) newErrors[key] = error;
     });
     
     setErrors(newErrors);
-    setTouched(['title', 'value', 'contactId', 'probability'].reduce((acc, key) => ({ ...acc, [key]: true }), {}));
+    setTouched(['title', 'value', 'contactId', 'probability', 'city'].reduce((acc, key) => ({ ...acc, [key]: true }), {}));
     
     return Object.keys(newErrors).length === 0;
   };
@@ -159,7 +163,7 @@ setFormData({
             placeholder="0.00"
 />
 
-          <Input
+<Input
             label="Phone"
             name="phone"
             type="tel"
@@ -169,6 +173,19 @@ setFormData({
             icon="Phone"
             placeholder="(555) 123-4567"
           />
+
+          <Input
+            label="City"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.city ? errors.city : ''}
+            required
+            icon="MapPin"
+            placeholder="Enter city"
+          />
+
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Contact <span className="text-error">*</span>

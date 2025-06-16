@@ -11,7 +11,7 @@ class DealService {
 
   async getAll() {
     try {
-      const params = {
+const params = {
 fields: [
           { field: { Name: "Id" } },
           { field: { Name: "Name" } },
@@ -22,6 +22,7 @@ fields: [
           { field: { Name: "expected_close" } },
           { field: { Name: "contact_id" } },
           { field: { Name: "phone" } },
+          { field: { Name: "city" } },
           { field: { Name: "created_at" } },
           { field: { Name: "updated_at" } }
         ],
@@ -43,6 +44,7 @@ return response.data?.map(deal => ({
         expectedClose: deal.expected_close,
         contactId: deal.contact_id?.toString(),
         phone: deal.phone || '',
+        city: deal.city || '',
         createdAt: deal.created_at,
         updatedAt: deal.updated_at
       })) || [];
@@ -54,7 +56,7 @@ return response.data?.map(deal => ({
 
   async getById(id) {
     try {
-      const params = {
+const params = {
 fields: [
           { field: { Name: "Id" } },
           { field: { Name: "Name" } },
@@ -65,6 +67,7 @@ fields: [
           { field: { Name: "expected_close" } },
           { field: { Name: "contact_id" } },
           { field: { Name: "phone" } },
+          { field: { Name: "city" } },
           { field: { Name: "created_at" } },
           { field: { Name: "updated_at" } }
         ]
@@ -86,6 +89,7 @@ return {
         expectedClose: deal.expected_close,
         contactId: deal.contact_id?.toString(),
         phone: deal.phone || '',
+        city: deal.city || '',
         createdAt: deal.created_at,
         updatedAt: deal.updated_at
       };
@@ -107,6 +111,7 @@ const params = {
           expected_close: dealData.expectedClose || null,
           contact_id: dealData.contactId ? parseInt(dealData.contactId) : null,
           phone: dealData.phone || '',
+          city: dealData.city || '',
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         }]
@@ -135,6 +140,7 @@ return {
           expectedClose: createdDeal.expected_close,
           contactId: createdDeal.contact_id?.toString(),
           phone: createdDeal.phone || '',
+          city: createdDeal.city || '',
           createdAt: createdDeal.created_at,
           updatedAt: createdDeal.updated_at
         };
@@ -172,8 +178,11 @@ return {
 if (dealData.contactId !== undefined) {
         updateRecord.contact_id = dealData.contactId ? parseInt(dealData.contactId) : null;
       }
-      if (dealData.phone !== undefined) {
+if (dealData.phone !== undefined) {
         updateRecord.phone = dealData.phone || '';
+      }
+      if (dealData.city !== undefined) {
+        updateRecord.city = dealData.city || '';
       }
       const params = {
         records: [updateRecord]
@@ -202,6 +211,7 @@ return {
           expectedClose: updatedDeal.expected_close,
           contactId: updatedDeal.contact_id?.toString(),
           phone: updatedDeal.phone || '',
+          city: updatedDeal.city || '',
           createdAt: updatedDeal.created_at,
           updatedAt: updatedDeal.updated_at
         };
