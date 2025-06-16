@@ -39,13 +39,18 @@ function AppContent() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const { ApperUI } = window.ApperSDK;
+useEffect(() => {
+    const { ApperClient, ApperUI } = window.ApperSDK;
     
-    ApperUI.setup({
-      containerId: 'apper-auth',
-      projectId: import.meta.env.VITE_APPER_PROJECT_ID,
-      publicKey: import.meta.env.VITE_APPER_PUBLIC_KEY,
+    const apperClient = new ApperClient({
+      apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
+      apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
+    });
+    
+    ApperUI.setup(apperClient, {
+      target: '#apper-auth',
+      clientId: import.meta.env.VITE_APPER_PROJECT_ID,
+      view: 'both',
       onSuccess: function (user) {
         // CRITICAL: This exact currentPath logic must be preserved in all implementations
         // DO NOT simplify or modify this pattern as it ensures proper redirection flow
