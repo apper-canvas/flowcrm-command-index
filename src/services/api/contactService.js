@@ -1,7 +1,11 @@
-const { ApperClient } = window.ApperSDK;
-
 class ContactService {
   constructor() {
+    // Ensure SDK is available before accessing it
+    if (!window.ApperSDK) {
+      throw new Error('Apper SDK not loaded. Please ensure the SDK script is included in your HTML.');
+    }
+    
+    const { ApperClient } = window.ApperSDK;
     this.apperClient = new ApperClient({
       apperProjectId: import.meta.env.VITE_APPER_PROJECT_ID,
       apperPublicKey: import.meta.env.VITE_APPER_PUBLIC_KEY
