@@ -12,7 +12,7 @@ class DealService {
   async getAll() {
     try {
       const params = {
-        fields: [
+fields: [
           { field: { Name: "Id" } },
           { field: { Name: "Name" } },
           { field: { Name: "title" } },
@@ -21,6 +21,7 @@ class DealService {
           { field: { Name: "probability" } },
           { field: { Name: "expected_close" } },
           { field: { Name: "contact_id" } },
+          { field: { Name: "phone" } },
           { field: { Name: "created_at" } },
           { field: { Name: "updated_at" } }
         ],
@@ -33,7 +34,7 @@ class DealService {
         throw new Error(response.message);
       }
 
-      return response.data?.map(deal => ({
+return response.data?.map(deal => ({
         id: deal.Id,
         title: deal.title || deal.Name || '',
         value: deal.value || 0,
@@ -41,6 +42,7 @@ class DealService {
         probability: deal.probability || 50,
         expectedClose: deal.expected_close,
         contactId: deal.contact_id?.toString(),
+        phone: deal.phone || '',
         createdAt: deal.created_at,
         updatedAt: deal.updated_at
       })) || [];
@@ -53,7 +55,7 @@ class DealService {
   async getById(id) {
     try {
       const params = {
-        fields: [
+fields: [
           { field: { Name: "Id" } },
           { field: { Name: "Name" } },
           { field: { Name: "title" } },
@@ -62,6 +64,7 @@ class DealService {
           { field: { Name: "probability" } },
           { field: { Name: "expected_close" } },
           { field: { Name: "contact_id" } },
+          { field: { Name: "phone" } },
           { field: { Name: "created_at" } },
           { field: { Name: "updated_at" } }
         ]
@@ -74,7 +77,7 @@ class DealService {
       }
 
       const deal = response.data;
-      return {
+return {
         id: deal.Id,
         title: deal.title || deal.Name || '',
         value: deal.value || 0,
@@ -82,6 +85,7 @@ class DealService {
         probability: deal.probability || 50,
         expectedClose: deal.expected_close,
         contactId: deal.contact_id?.toString(),
+        phone: deal.phone || '',
         createdAt: deal.created_at,
         updatedAt: deal.updated_at
       };
@@ -93,7 +97,7 @@ class DealService {
 
   async create(dealData) {
     try {
-      const params = {
+const params = {
         records: [{
           Name: dealData.title,
           title: dealData.title,
@@ -102,6 +106,7 @@ class DealService {
           probability: parseInt(dealData.probability) || 50,
           expected_close: dealData.expectedClose || null,
           contact_id: dealData.contactId ? parseInt(dealData.contactId) : null,
+          phone: dealData.phone || '',
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         }]
@@ -121,7 +126,7 @@ class DealService {
         }
 
         const createdDeal = response.results[0].data;
-        return {
+return {
           id: createdDeal.Id,
           title: createdDeal.title || createdDeal.Name || '',
           value: createdDeal.value || 0,
@@ -129,6 +134,7 @@ class DealService {
           probability: createdDeal.probability || 50,
           expectedClose: createdDeal.expected_close,
           contactId: createdDeal.contact_id?.toString(),
+          phone: createdDeal.phone || '',
           createdAt: createdDeal.created_at,
           updatedAt: createdDeal.updated_at
         };
@@ -163,10 +169,12 @@ class DealService {
       if (dealData.expectedClose !== undefined) {
         updateRecord.expected_close = dealData.expectedClose;
       }
-      if (dealData.contactId !== undefined) {
+if (dealData.contactId !== undefined) {
         updateRecord.contact_id = dealData.contactId ? parseInt(dealData.contactId) : null;
       }
-
+      if (dealData.phone !== undefined) {
+        updateRecord.phone = dealData.phone || '';
+      }
       const params = {
         records: [updateRecord]
       };
@@ -185,7 +193,7 @@ class DealService {
         }
 
         const updatedDeal = response.results[0].data;
-        return {
+return {
           id: updatedDeal.Id,
           title: updatedDeal.title || updatedDeal.Name || '',
           value: updatedDeal.value || 0,
@@ -193,6 +201,7 @@ class DealService {
           probability: updatedDeal.probability || 50,
           expectedClose: updatedDeal.expected_close,
           contactId: updatedDeal.contact_id?.toString(),
+          phone: updatedDeal.phone || '',
           createdAt: updatedDeal.created_at,
           updatedAt: updatedDeal.updated_at
         };

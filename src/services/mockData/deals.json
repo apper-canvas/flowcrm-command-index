@@ -1,5 +1,5 @@
 [
-  {
+{
     "id": "1",
     "title": "TechCorp Enterprise Solution",
     "value": 85000,
@@ -7,10 +7,11 @@
     "contactId": "1",
     "probability": 75,
     "expectedClose": "2024-02-15T00:00:00Z",
+    "phone": "(555) 123-4567",
     "createdAt": "2024-01-15T10:30:00Z",
     "updatedAt": "2024-01-20T14:22:00Z"
   },
-  {
+{
     "id": "2",
     "title": "Design System Implementation",
     "value": 32000,
@@ -18,10 +19,11 @@
     "contactId": "2",
     "probability": 85,
     "expectedClose": "2024-02-08T00:00:00Z",
+    "phone": "(555) 987-6543",
     "createdAt": "2024-01-18T09:15:00Z",
     "updatedAt": "2024-01-22T16:45:00Z"
   },
-  {
+{
     "id": "3",
     "title": "Growth Marketing Platform",
     "value": 24500,
@@ -29,10 +31,11 @@
     "contactId": "3",
     "probability": 60,
     "expectedClose": "2024-02-28T00:00:00Z",
+    "phone": "(555) 456-7890",
     "createdAt": "2024-01-22T11:20:00Z",
     "updatedAt": "1/23/2024 8:30:00 AMZ"
   },
-  {
+{
     "id": "4",
     "title": "Consulting Services Contract",
     "value": 120000,
@@ -40,10 +43,11 @@
     "contactId": "4",
     "probability": 40,
     "expectedClose": "2024-03-15T00:00:00Z",
+    "phone": "(555) 234-5678",
     "createdAt": "2024-01-10T13:45:00Z",
     "updatedAt": "2024-01-25T10:15:00Z"
   },
-  {
+{
     "id": "5",
     "title": "Retail Operations Software",
     "value": 45000,
@@ -51,6 +55,7 @@
     "contactId": "5",
     "probability": 100,
     "expectedClose": "2024-01-30T00:00:00Z",
+    "phone": "(555) 345-6789",
     "createdAt": "2024-01-05T15:30:00Z",
     "updatedAt": "2024-01-30T12:00:00Z"
   }

@@ -12,26 +12,28 @@ const DealForm = ({
   onCancel, 
   loading = false 
 }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     title: '',
     value: '',
     stage: 'lead',
     contactId: '',
     probability: '50',
-    expectedClose: ''
+    expectedClose: '',
+    phone: ''
   });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
 
   useEffect(() => {
     if (deal) {
-      setFormData({
+setFormData({
         title: deal.title || '',
         value: deal.value?.toString() || '',
         stage: deal.stage || 'lead',
         contactId: deal.contactId || '',
         probability: deal.probability?.toString() || '50',
-        expectedClose: deal.expectedClose ? deal.expectedClose.split('T')[0] : ''
+        expectedClose: deal.expectedClose ? deal.expectedClose.split('T')[0] : '',
+        phone: deal.phone || ''
       });
     }
   }, [deal]);
@@ -155,8 +157,18 @@ const DealForm = ({
             required
             icon="DollarSign"
             placeholder="0.00"
-          />
+/>
 
+          <Input
+            label="Phone"
+            name="phone"
+            type="tel"
+            value={formData.phone}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            icon="Phone"
+            placeholder="(555) 123-4567"
+          />
           <div className="relative">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Contact <span className="text-error">*</span>
